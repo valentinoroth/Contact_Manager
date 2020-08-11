@@ -1,0 +1,54 @@
+﻿<Window x:Name="window" x:Class="Contact_Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Contact_Manager"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.CommandBindings>
+        <CommandBinding x:Name="cmdOpen" Command="ApplicationCommands.Open" CanExecute="CmdOpen_CanExecute" Executed="CmdOpen_Executed" />
+        <CommandBinding x:Name="cmdSave" Command="ApplicationCommands.Save" CanExecute="CmdSave_CanExecute" Executed="CmdSave_Executed" />
+        <CommandBinding x:Name="cmdSaveAs" Command="ApplicationCommands.SaveAs" CanExecute="CmdSaveAs_CanExecute" Executed="CmdSaveAs_Executed" />
+        <CommandBinding x:Name="cmdHelp" Command="ApplicationCommands.Help" CanExecute="CmdHelp_CanExecute" Executed="CmdHelp_Executed" />
+    </Window.CommandBindings>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <ToolBarTray Height="52" VerticalAlignment="Top" Grid.Row="1">
+            <ToolBar x:Name="Toolbar" HorizontalAlignment="Left" Height="52" VerticalAlignment="Top" Width="245" Margin="0,0,-221,-39">
+                <Button x:Name="Btn_save" Width="54" Height="47" Click="Btn_save_Click_1">
+                    <Image Height="47" Source="filesave.ico" Stretch="Fill" Width="54"/>
+                </Button>
+                <Button x:Name="btn_load" Height="47" Width="54" Click="Btn_load_Click">
+                    <Image Height="47" Source="fileopen.ico" Stretch="Fill" Width="54"/>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <Menu Height="25" VerticalAlignment="Top">
+            <MenuItem Header="Fichier" Height="25">
+                <MenuItem x:Name="TB_open"  Command="ApplicationCommands.Open" Click="TB_open_Click"/>
+                <MenuItem x:Name="TB_save"  Command="ApplicationCommands.Save"/>
+                <MenuItem x:Name="TB_saveAs" Command="ApplicationCommands.SaveAs"/>
+                <MenuItem x:Name="TB_help"  Command="ApplicationCommands.Help"/>
+            </MenuItem>
+            <MenuItem Header="Edit" Height="25">
+                <MenuItem Header="Save"/>
+            </MenuItem>
+            <MenuItem Header="Aide" Height="25">
+                <MenuItem Header="Save"/>
+            </MenuItem>
+        </Menu>
+        <StatusBar HorizontalAlignment="Left" Height="25" Grid.Row="3" VerticalAlignment="Top" Width="792">
+            <Label x:Name="lbl_count" Content="{Binding Items.Count, ElementName=data_grid}" Width="137" Height="25" ContentStringFormat="{}{0} contact(s)" />
+        </StatusBar>
+        <TabControl x:Name="TabControl" RenderTransformOrigin="0.5,0.5" Grid.Row="2"/>
+
+    </Grid>
+</Window>
